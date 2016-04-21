@@ -1,6 +1,6 @@
 {
   "name": "travis-poke",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "A package for poking holes in security groups",
   "bin": {
     "aws-poke": "bin/poke.js"
