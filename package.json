@@ -2,7 +2,9 @@
   "name": "travis-poke",
   "version": "0.1.0",
   "description": "A package for poking holes in security groups",
-  "main": "poke.js",
+  "bin": {
+    "github-pages-commit": "bin/poke.js"
+  }
   "dependencies": {
     "aws-sdk": "^2.3.4",
     "external-ip": "^0.2.4",
