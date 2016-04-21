@@ -3,11 +3,10 @@ var getIP = require('external-ip')();
 var whois = require('whois')
 var http = require('http');
 
-var GROUP_ID = "sg-156df972"
-var REGION = "us-east-1"
+var AWS_GROUP_ID = process.env.AWS_GROUP_ID;
 
 var ec2 = new AWS.EC2({
-  "region": REGION,
+  "region": process.env.AWS_REGION,
   "sslEnabled": true,
   "accessKeyId": process.env.NPM_AWS_ACCESS_KEY_ID,
   "secretAccessKey": process.env.NPM_AWS_SECRET_ACCESS_KEY
@@ -58,7 +57,7 @@ var ip = getIP(function(err, ip) {
         "Values": [ whois_data["CIDR"] ]
       }
       ],
-      "GroupIds": [ GROUP_ID ]
+      "GroupIds": [ AWS_GROUP_ID ]
     };
     ec2.describeSecurityGroups(params, function(err, data) {
       if (err) {
@@ -75,7 +74,7 @@ var ip = getIP(function(err, ip) {
           CidrIp: whois_data["CIDR"],
           DryRun: false,
           FromPort: 8080,
-          GroupId: GROUP_ID,
+          GroupId: AWS_GROUP_ID,
           IpProtocol: 'tcp',
           ToPort: 8080
         };
