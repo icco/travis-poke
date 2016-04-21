@@ -1,0 +1,25 @@
+{
+  "name": "travis-poke",
+  "version": "0.1.0",
+  "description": "A package for poking holes in security groups",
+  "main": "poke.js",
+  "dependencies": {
+    "aws-sdk": "^2.3.4",
+    "external-ip": "^0.2.4",
+    "whois": "^2.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icco/travis-poke.git"
+  },
+  "author": "Nat Welch <nat@natwelch.com> (http://natwelch.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/icco/travis-poke/issues"
+  },
+  "homepage": "https://github.com/icco/travis-poke#readme"
+}
