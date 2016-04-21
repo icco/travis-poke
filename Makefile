@@ -2,7 +2,7 @@
 
 SHELL := /bin/bash
 
-VERSION := $(cat package.json | jq .version)
+VERSION := $(shell cat package.json | jq .version)
 CURR_HASH := $(shell echo "$$(git rev-list --pretty=%h --max-count=1 HEAD | grep -v ^commit)")
 
 release: tag
