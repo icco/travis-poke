@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 var AWS = require('aws-sdk');
 var getIP = require('external-ip')();
 var whois = require('whois')
