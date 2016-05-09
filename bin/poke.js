@@ -5,7 +5,11 @@ var getIP = require('external-ip')();
 var whois = require('whois')
 var http = require('http');
 
+// This is the AWS Security Group we will try to modify.
 var AWS_GROUP_ID = process.env.AWS_GROUP_ID;
+
+// This is the host we should try to connect to. If left unset we won't test.
+var TEST_HOST = process.env.TEST_HOST;
 
 var ec2 = new AWS.EC2({
   "region": process.env.AWS_REGION,
@@ -95,14 +99,16 @@ var ip = getIP(function(err, ip) {
       }
 
       // Test our connectivity
-      var req = http.get({"host": "npm-ext.hfa.io", "port": 8080}, function(res) {
-        console.log('Connected to NPM!');
-        console.log('Status: ' + res.statusCode);
-      }).on('error', function(e) {
-        console.error("Got error: " + e.message);
-        process.exit(1)
-      });
-      req.setTimeout(5000);
+      if (!!TEST_HOST) {
+        var req = http.get({"host": TEST_HOST, "port": 8080}, function(res) {
+          console.log('Connected to NPM!');
+          console.log('Status: ' + res.statusCode);
+        }).on('error', function(e) {
+          console.error("Got error: " + e.message);
+          process.exit(1)
+        });
+        req.setTimeout(5000);
+      }
     });
   });
 });
